@@ -4,10 +4,10 @@ class Database
 {
     private $_db;
 
-    public function __construct() 
+    public function __construct()
     {
-        try{ 
-            ORM::configure('sqlite:./db/db_accesos.db');
+        try{
+            ORM::configure('sqlite:./db/db_ubicaciones.db');
             ORM::configure('return_result_sets', true);
             ORM::configure('error_mode', PDO::ERRMODE_WARNING);
         }catch(Exception $e){
