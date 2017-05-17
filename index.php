@@ -29,15 +29,15 @@ Flight::route('GET /demo/db', array('Controller_Demo','listar_usuarios'));
 Flight::route('GET /departamento/listar', array('Controller_Departamento','listar'));
 Flight::route('POST /departamento/guardar', array('Controller_Departamento','guardar'));
 
-Flight::route('GET /provnicia/listar/@departamento_id', array('Controller_Provincia','listar'));
+Flight::route('GET /provincia/listar/@departamento_id', array('Controller_Provincia','listar'));
 Flight::route('POST /provincia/guardar', array('Controller_Provincia','guardar'));
 
 Flight::route('GET /distrito/listar/@provicia_id', array('Controller_Distrito','listar'));
 Flight::route('POST /distrito/guardar', array('Controller_Distrito','guardar'));
 
-Flight::map('notFound', function(){
+/*Flight::map('notFound', function(){
 	Flight::redirect('/error/404');
-});
+});*/
 
 Flight::start();
 
