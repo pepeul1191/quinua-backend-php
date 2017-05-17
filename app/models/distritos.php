@@ -7,55 +7,30 @@ class Distritos extends Database
 		parent::__construct();
 	}
 
-	public function crear($nombre, $url, $subtitulo_id)
+	public function crear($nombre)
 	{
-		$items = ORM::for_table('items')->create();
-		$items->set('subtitulo_id', $subtitulo_id);
-		$items->set('nombre', $nombre);
-		$items->set('url', $url);
-		$items->save();
+		$distritos = ORM::for_table('distritos')->create();
+		$distritos->set('nombre', $nombre);
+		$distritos->save();
 
-		return $items->id();
+		return $distritos->id();
 	}
 
-	public function editar($id, $nombre, $url)
+	public function editar($id, $nombre)
 	{
-		$items = ORM::for_table('items')->where_equal('id', $id)->find_one();
-		$items->set('nombre', $nombre);
-		$items->set('url', $url);
-		$items->save();
+		$distritos = ORM::for_table('distritos')->where_equal('id', $id)->find_one();
+		$distritos->set('nombre', $nombre);
+		$distritos->save();
 	}
 
 	public function eliminar($id)
 	{
-		ORM::for_table('items')->where_equal('id', $id)->find_one()->delete();
+		ORM::for_table('distritos')->where_equal('id', $id)->find_one()->delete();
 	}
 
-	public function menu($sistema, $nombre_modulo)
+	public function listar($provincia_id)
 	{
-		return ORM::for_table('items')->raw_query('
-            SELECT I.nombre AS item, I.url, S.nombre AS subtitulo FROM items I
-            INNER JOIN subtitulos S ON I.subtitulo_id = S.id
-            INNER JOIN modulos M ON S.modulo_id = M.id
-            INNER JOIN sistemas SI ON SI.id = M.sistema_id
-            WHERE M.nombre = :nombre  AND SI.nombre = :sistema', array('nombre' => $nombre_modulo, 'sistema' => $sistema))->find_array();
-	}
-
-	public function listar_todos()
-	{
-		return ORM::for_table('items')->raw_query('
-            SELECT M.nombre AS modulo , M.icono AS icono,S.nombre AS subtitulo,
-            GROUP_CONCAT(I.nombre || "::" || I.url, "||") AS items
-            FROM items I
-            INNER JOIN subtitulos S ON I.subtitulo_id = S.id
-            INNER JOIN modulos M ON S.modulo_id = M.id
-            GROUP BY subtitulo
-            ORDER BY modulo')->find_array();
-	}
-
-	public function listar($subtitulo_id)
-	{
-		return ORM::for_table('items')->select('id')->select('nombre')->select('url')->where('subtitulo_id', $subtitulo_id)->find_array();
+		return ORM::for_table('distritos')->select('id')->select('nombre')->where('provincia_id', $provincia_id)->find_array();
 	}
 }
 

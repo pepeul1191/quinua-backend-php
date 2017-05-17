@@ -32,7 +32,7 @@ Flight::route('POST /departamento/guardar', array('Controller_Departamento','gua
 Flight::route('GET /provincia/listar/@departamento_id', array('Controller_Provincia','listar'));
 Flight::route('POST /provincia/guardar', array('Controller_Provincia','guardar'));
 
-Flight::route('GET /distrito/listar/@provicia_id', array('Controller_Distrito','listar'));
+Flight::route('GET /distrito/listar/@provincia_id', array('Controller_Distrito','listar'));
 Flight::route('POST /distrito/guardar', array('Controller_Distrito','guardar'));
 
 /*Flight::map('notFound', function(){
