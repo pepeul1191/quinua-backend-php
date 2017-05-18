@@ -32,6 +32,12 @@ class Distritos extends Database
 	{
 		return ORM::for_table('distritos')->select('id')->select('nombre')->where('provincia_id', $provincia_id)->find_array();
 	}
+
+	public function buscar($texto)
+	{
+		return ORM::for_table('distritos')->raw_query('
+						SELECT id, nombre FROM vw_distrito_provincia_departamento WHERE nombre LIKE :texto LIMIT 0,10;', array('texto' => $texto . '%'))->find_array();
+	}
 }
 
 ?>

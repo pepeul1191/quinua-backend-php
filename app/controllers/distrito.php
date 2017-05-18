@@ -64,6 +64,13 @@ class Controller_Distrito extends Controller
     	$distritos = Controller::load_model('distritos');
 		$distritos->eliminar($id);
     }
+
+    public static function buscar()
+    {
+      $texto = Flight::request()->query['texto'];
+      $distritos = Controller::load_model('distritos');
+      echo json_encode($distritos->buscar($texto));
+    }
 }
 
 ?>
