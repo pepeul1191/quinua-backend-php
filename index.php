@@ -22,6 +22,7 @@ Flight::route('POST /provincia/guardar', array('Controller_Provincia','guardar')
 Flight::route('GET /distrito/listar/@provincia_id', array('Controller_Distrito','listar'));
 Flight::route('POST /distrito/guardar', array('Controller_Distrito','guardar'));
 Flight::route('POST /distrito/buscar', array('Controller_Distrito','buscar'));
+Flight::route('GET /distrito/buscar_vista/@distrito_id', array('Controller_Distrito','buscar_vista'));
 
 /*Flight::map('notFound', function(){
 	Flight::redirect('/error/404');

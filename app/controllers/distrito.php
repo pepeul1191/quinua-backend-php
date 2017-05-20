@@ -71,6 +71,13 @@ class Controller_Distrito extends Controller
       $distritos = Controller::load_model('distritos');
       echo json_encode($distritos->buscar($texto));
     }
+
+      public static function buscar_vista($distrito_id)
+      {
+        $distritos = Controller::load_model('distritos');
+        $rs = $distritos->buscar_vista($distrito_id);
+        echo $rs[0]['nombre'];
+      }
 }
 
 ?>

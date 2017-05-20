@@ -38,6 +38,13 @@ class Distritos extends Database
 		return ORM::for_table('distritos')->raw_query('
 						SELECT id, nombre FROM vw_distrito_provincia_departamento WHERE nombre LIKE :texto LIMIT 0,10;', array('texto' => $texto . '%'))->find_array();
 	}
+
+  	public function buscar_vista($distrito_id)
+    {
+      //return ORM::for_table('distritos')->raw_query('
+              //SELECT id, nombre FROM vw_distrito_provincia_departamento WHERE id LIKE :texto LIMIT 0,10;', array('texto' => $texto . '%'))->find_array();
+      return ORM::for_table('vw_distrito_provincia_departamento')->select('nombre')->where('id', $distrito_id)->find_array();
+    }
 }
 
 ?>
