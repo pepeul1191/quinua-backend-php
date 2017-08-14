@@ -13,21 +13,27 @@ class DepartamentoController extends Controller
     try {
 			if(count($nuevos) > 0){
 				foreach ($nuevos as &$nuevo) {
-				    $id_generado = self::crear($nuevo->{'nombre'});
+				    $departamento = Model::factory('User')->create();
+					 $departamento->nombre = $nuevo->{'nombre'};
+					 $departamento->save();
+					 $id_generado = $departamento->id();
 				    $temp = [];
 				    $temp['temporal'] = $nuevo->{'id'};
-	              $temp['nuevo_id'] = $id_generado;
-	              array_push( $array_nuevos, $temp );
+	             $temp['nuevo_id'] = $id_generado;
+	             array_push( $array_nuevos, $temp );
 				}
 			}
 			if(count($editados) > 0){
 				foreach ($editados as &$editado) {
-					self::editar($editado->{'id'}, $editado->{'nombre'});
+					$departamento = Model::factory('Departamento')->find_one($editado->{'id'});
+					$departamento->nombre = $editado->{'nombre'};
+					$departamento->save();
 				}
 			}
 			if(count($eliminados) > 0){
 				foreach ($eliminados as &$eliminado) {
-			    	self::eliminar((int)$eliminado);
+			    	$departamento = Model::factory('Departamento')->find_one($eliminado);
+					$departamento->delete();
 				}
 			}
 			$rpta['tipo_mensaje'] = 'success';
@@ -50,18 +56,6 @@ class DepartamentoController extends Controller
     {
     	$departamentos = Controller::load_model('departamentos');
 		return $departamentos->crear($nombre);
-    }
-
-    public static function editar($id, $nombre)
-    {
-    	$departamentos = Controller::load_model('departamentos');
-		$departamentos->editar($id, $nombre);
-    }
-
-    public static function eliminar($id)
-    {
-    	$departamentos = Controller::load_model('departamentos');
-		$departamentos->eliminar($id);
     }
 }
 

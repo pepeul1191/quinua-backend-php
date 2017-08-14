@@ -69,12 +69,10 @@ class DistritoController extends Controller
       echo json_encode(Model::factory('VWDistritoProvinciaDepartamento')->select('id')->select('nombre')->where_like('nombre', Flight::request()->query['nombre'] . '%')->limit(10)->find_array());
     }
 
-      public static function buscar_vista($distrito_id)
-      {
-        $distritos = Controller::load_model('distritos');
-        $rs = $distritos->buscar_vista($distrito_id);
-        echo $rs[0]['nombre'];
-      }
+   public static function buscar_vista($distrito_id)
+   {
+		echo json_encode(Model::factory('VWDistritoProvinciaDepartamento')->select('nombre')->where('id', $distrito_id)->find_one()->as_array());
+   }
 }
 
 ?>
