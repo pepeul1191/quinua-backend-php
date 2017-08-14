@@ -1,6 +1,7 @@
 <?php
 
 require 'app/vendor/autoload.php';
+require_once 'app/config/database.php';
 
 header('x-powered-by: PHP');
 header('Server: Ubuntu');
@@ -13,16 +14,16 @@ Configuration::init( realpath(dirname(__FILE__)) . '/app/', 'http://localhost/ub
 Flight::route('GET /', array('Controller_Index','index'));
 Flight::route('GET /error/404', array('Controller_Error','error_404'));
 
-Flight::route('GET /departamento/listar', array('Controller_Departamento','listar'));
-Flight::route('POST /departamento/guardar', array('Controller_Departamento','guardar'));
+Flight::route('GET /departamento/listar', array('DepartamentoController','listar'));
+Flight::route('POST /departamento/guardar', array('DepartamentoController','guardar'));
 
-Flight::route('GET /provincia/listar/@departamento_id', array('Controller_Provincia','listar'));
-Flight::route('POST /provincia/guardar', array('Controller_Provincia','guardar'));
+Flight::route('GET /provincia/listar/@departamento_id', array('ProvinciaController','listar'));
+Flight::route('POST /provincia/guardar', array('ProvinciaController','guardar'));
 
-Flight::route('GET /distrito/listar/@provincia_id', array('Controller_Distrito','listar'));
-Flight::route('POST /distrito/guardar', array('Controller_Distrito','guardar'));
-Flight::route('POST /distrito/buscar', array('Controller_Distrito','buscar'));
-Flight::route('GET /distrito/buscar_vista/@distrito_id', array('Controller_Distrito','buscar_vista'));
+Flight::route('GET /distrito/listar/@provincia_id', array('DistritoController','listar'));
+Flight::route('POST /distrito/guardar', array('DistritoController','guardar'));
+Flight::route('GET /distrito/buscar', array('DistritoController','buscar'));
+Flight::route('GET /distrito/buscar_vista/@distrito_id', array('DistritoController','buscar_vista'));
 
 /*Flight::map('notFound', function(){
 	Flight::redirect('/error/404');

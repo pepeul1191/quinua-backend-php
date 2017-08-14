@@ -1,12 +1,14 @@
 {
     "require": {
         "mikecao/flight": "^1.3",
-        "j4mie/idiorm": "^1.5.3"
+        "j4mie/idiorm": "^1.5.3",
+        "j4mie/paris":"^1.5.6"
     },
     "autoload": {
 	    "classmap": [
 	      "app/config",
-	      "app/controllers"
+	      "app/controllers",
+            "app/models"
 	    ]
   	},
   	"config": {

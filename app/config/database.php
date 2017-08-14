@@ -1,21 +1,12 @@
 <?php
 
-class Database
-{
-    private $_db;
+require_once 'app/vendor/j4mie/idiorm/idiorm.php';
+require_once 'app/vendor/j4mie/paris/paris.php';
 
-    public function __construct()
-    {
-        try{
-            ORM::configure('sqlite:./db/db_ubicaciones.db');
-            ORM::configure('return_result_sets', true);
-            ORM::configure('error_mode', PDO::ERRMODE_WARNING);
-        }catch(Exception $e){
-            echo "Verifique los parámetros de conección";
-        }
-    }
-}
+ORM::configure('sqlite:./db/db_ubicaciones.db');
+ORM::configure('return_result_sets', true);
+ORM::configure('error_mode', PDO::ERRMODE_WARNING);
 
-// FUENTE: http://idiorm.readthedocs.io/en/latest/configuration.html
+// FUENTE: http://idiorm.readthedocs.io/en/latest/configuration.html | http://paris.readthedocs.io/en/latest/configuration.html
 
 ?>
