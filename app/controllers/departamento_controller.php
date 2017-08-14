@@ -13,7 +13,7 @@ class DepartamentoController extends Controller
     try {
 			if(count($nuevos) > 0){
 				foreach ($nuevos as &$nuevo) {
-				    $departamento = Model::factory('User')->create();
+				    $departamento = Model::factory('Departamento')->create();
 					 $departamento->nombre = $nuevo->{'nombre'};
 					 $departamento->save();
 					 $id_generado = $departamento->id();
@@ -47,16 +47,10 @@ class DepartamentoController extends Controller
 		echo json_encode($rpta);
 	}
 
-    public static function listar()
-    {
-      echo json_encode(Model::factory('Departamento')->find_array());
-    }
-
-    public static function crear($nombre)
-    {
-    	$departamentos = Controller::load_model('departamentos');
-		return $departamentos->crear($nombre);
-    }
+   public static function listar()
+   {
+     echo json_encode(Model::factory('Departamento')->find_array());
+   }
 }
 
 ?>

@@ -13,21 +13,27 @@ class DistritoController extends Controller
     try {
 			if(count($nuevos) > 0){
 				foreach ($nuevos as &$nuevo) {
-				    $id_generado = self::crear($nuevo->{'nombre'});
-				    $temp = [];
-				    $temp['temporal'] = $nuevo->{'id'};
-	              $temp['nuevo_id'] = $id_generado;
-	              array_push( $array_nuevos, $temp );
+				   $distrito = Model::factory('Distrito')->create();
+					$distrito->nombre = $nuevo->{'nombre'};
+					$distrito->save();
+					$id_generado = $distrito->id();
+				   $temp = [];
+				   $temp['temporal'] = $nuevo->{'id'};
+	            $temp['nuevo_id'] = $id_generado;
+	            array_push( $array_nuevos, $temp );
 				}
 			}
 			if(count($editados) > 0){
 				foreach ($editados as &$editado) {
-					self::editar($editado->{'id'}, $editado->{'nombre'});
+					$distrito = Model::factory('Distrito')->find_one($editado->{'id'});
+					$distrito->nombre = $editado->{'nombre'};
+					$distrito->save();
 				}
 			}
 			if(count($eliminados) > 0){
 				foreach ($eliminados as &$eliminado) {
-			    	self::eliminar((int)$eliminado);
+			    	$distrito = Model::factory('Distrito')->find_one($eliminado);
+					$distrito->delete();
 				}
 			}
 			$rpta['tipo_mensaje'] = 'success';
@@ -41,33 +47,15 @@ class DistritoController extends Controller
 		echo json_encode($rpta);
 	}
 
-    public static function listar($provincia_id)
-    {
-    	echo json_encode(Model::factory('Distrito')->select('id')->select('nombre')->where('provincia_id', $provincia_id)->find_array());
-    }
+   public static function listar($provincia_id)
+   {
+   	echo json_encode(Model::factory('Distrito')->select('id')->select('nombre')->where('provincia_id', $provincia_id)->find_array());
+   }
 
-    public static function crear($nombre)
-    {
-    	$distritos = Controller::load_model('distritos');
-		return $distritos->crear($nombre);
-    }
-
-    public static function editar($id, $nombre)
-    {
-    	$distritos = Controller::load_model('distritos');
-		$distritos->editar($id, $nombre);
-    }
-
-    public static function eliminar($id)
-    {
-    	$distritos = Controller::load_model('distritos');
-		$distritos->eliminar($id);
-    }
-
-    public static function buscar()
-    {
-      echo json_encode(Model::factory('VWDistritoProvinciaDepartamento')->select('id')->select('nombre')->where_like('nombre', Flight::request()->query['nombre'] . '%')->limit(10)->find_array());
-    }
+   public static function buscar()
+   {
+     echo json_encode(Model::factory('VWDistritoProvinciaDepartamento')->select('id')->select('nombre')->where_like('nombre', Flight::request()->query['nombre'] . '%')->limit(10)->find_array());
+   }
 
    public static function buscar_vista($distrito_id)
    {
