@@ -11,8 +11,8 @@ header('Content-type: text/html; charset=UTF-8');
 
 Configuration::init( realpath(dirname(__FILE__)) . '/app/', 'http://localhost/ubicaciones/', realpath(dirname(__FILE__) . '/db/' . 'db_ubicaciones.db'));
 
-Flight::route('GET /', array('Controller_Index','index'));
-Flight::route('GET /error/404', array('Controller_Error','error_404'));
+Flight::route('GET /', array('IndexController','index'));
+Flight::route('GET /error/404', array('ErrorController','error_404'));
 
 Flight::route('GET /departamento/listar', array('DepartamentoController','listar'));
 Flight::route('POST /departamento/guardar', array('DepartamentoController','guardar'));
@@ -25,9 +25,10 @@ Flight::route('POST /distrito/guardar', array('DistritoController','guardar'));
 Flight::route('GET /distrito/buscar', array('DistritoController','buscar'));
 Flight::route('GET /distrito/buscar_vista/@distrito_id', array('DistritoController','buscar_vista'));
 
-/*Flight::map('notFound', function(){
+Flight::map('notFound', function(){
+	header('HTTP/1.0 404 Not Found');
 	Flight::redirect('/error/404');
-});*/
+});
 
 Flight::start();
 
