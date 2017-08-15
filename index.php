@@ -9,7 +9,7 @@ header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Content-type: text/html; charset=UTF-8');
 
-Configuration::init( realpath(dirname(__FILE__)), 'http://localhost/ubicaciones/');
+Configuration::init( realpath(dirname(__FILE__)), 'https://quinua-smart.000webhostapp.com/');
 
 Flight::route('GET /', array('IndexController','index'));
 Flight::route('GET /error/404', array('ErrorController','error_404'));
