@@ -14,6 +14,10 @@ class UsuarioController extends Controller
 		}else{
 			echo "no existe";
 		}
+
+		$x = ORM::for_table('tokens', 'tokens')->find_array();
+
+		echo json_encode($x);
    	}
 }
 

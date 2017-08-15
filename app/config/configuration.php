@@ -6,8 +6,9 @@ class Configuration
 
 	public static function init($path, $base_url)
 	{
-		self::$data["path"] = $path;
+		self::$data["path"] = $path  . '/app/';
 		self::$data["base_url"] = $base_url;
+		self::$data["db_tokens"] = $path . '/db/db_tokens.db';
 	}
 
 	public static function get($key)
