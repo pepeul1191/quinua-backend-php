@@ -44,7 +44,7 @@
 // Please see https://bitbucket.org/phpliteadmin/public/wiki/Configuration for more details
 
 //password to gain access
-$password = 'eventossistemas';
+$password = 'kiki123';
 
 //directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
 $directory = 'db';
@@ -56,12 +56,12 @@ $subdirectories = false;
 //if any of the databases do not exist as they are referenced by their path, they will be created automatically
 $databases = array(
 	array(
-		'path'=> 'db_imagenes',
-		'name'=> 'Imagenes DB'
+		'path'=> 'db_quinua.db',
+		'name'=> 'Quinua DB'
 	),
 	array(
-		'path'=> 'database2.sqlite',
-		'name'=> 'Database 2'
+		'path'=> 'db_tokens.db',
+		'name'=> 'Tokens DB'
 	),
 );
 
