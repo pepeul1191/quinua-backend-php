@@ -4,13 +4,10 @@ class Configuration
 {
 	public static $data;
 
-	public static function init($path, $base_url, $db)
+	public static function init($path, $base_url)
 	{
 		self::$data["path"] = $path;
 		self::$data["base_url"] = $base_url;
-		if($db){
-			self::$data["db"] = $db;
-		}
 	}
 
 	public static function get($key)
