@@ -16,6 +16,7 @@ Flight::route('GET /error/404', array('ErrorController','error_404'));
 
 Flight::route('GET /estacion/listar', array('EstacionController','listar'));
 Flight::route('GET /estacion/detalle/@id', array('EstacionController','detalle'));
+Flight::route('GET /sensor/historico/@id', array('SensorController','historico'));
 
 Flight::map('notFound', function(){
 	header('HTTP/1.0 404 Not Found');
