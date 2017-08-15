@@ -1,4 +1,4 @@
-# Accesos SQLite - PP
+# Quinua Smart - PHP
 
 ### Tecnologías
 
@@ -24,13 +24,13 @@ Servicio web desarrollado en PHP usando el framework FlightPHP, con patrones de 
 
 ### Rutas
 
-	+ GET -> /', IndexController#index
-	+ GET -> /error/404', ErrorController#error_404
-	+ GET -> /estacion/listar', EstacionController#listar
-	+ GET -> /estacion/detalle/@id', EstacionController#detalle
-	+ GET -> /sensor/historico/@id', SensorController#historico
-	+ GET -> /token/obtener', TokenController#obtener
-	+ POST -> /usuario/acceder', UsuarioController#acceder
+	+ GET -> / : IndexController#index
+	+ GET -> /error/404 : ErrorController#error_404
+	+ GET -> /estacion/listar : EstacionController#listar
+	+ GET -> /estacion/detalle/@id : EstacionController#detalle
+	+ GET -> /sensor/historico/@id : SensorController#historico
+	+ GET -> /token/obtener : TokenController#obtener
+	+ POST -> /usuario/acceder : UsuarioController#acceder
 --- 
 
 #### Fuentes
