@@ -10,6 +10,10 @@ ORM::configure('password', 'ulima');
 ORM::configure('port', '5432');
 */
 ORM::configure('sqlite:./db/db_quinua.db');
+
+ORM::configure('sqlite:./db/db_tokens.db', null, 'tokens');
+ORM::configure('return_result_sets', true);
+ORM::configure('error_mode', PDO::ERRMODE_WARNING);
 ORM::configure('sqlite:./db/db_tokens.db', null, 'tokens');
 ORM::configure('return_result_sets', true);
 ORM::configure('error_mode', PDO::ERRMODE_WARNING);
