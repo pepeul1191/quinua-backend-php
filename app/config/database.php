@@ -14,7 +14,7 @@ ORM::configure('pgsql:dbname=dc8kfe3kkehphc;host=ec2-23-23-221-255.compute-1.ama
 
 ORM::configure('return_result_sets', true);
 ORM::configure('error_mode', PDO::ERRMODE_WARNING);
-ORM::configure('sqlite:./db/db_tokens.db', null, 'tokens');
+//ORM::configure('sqlite:./db/db_tokens.db', null, 'tokens');
 ORM::configure('return_result_sets', true);
 ORM::configure('error_mode', PDO::ERRMODE_WARNING);
 
