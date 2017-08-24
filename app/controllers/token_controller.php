@@ -5,7 +5,7 @@ class TokenController extends Controller
    	public static function obtener()
    	{
 		$usuario = Flight::request()->query['usuario'];
-		$temp = ORM::for_table('tokens', 'tokens')->where(array('usuario' => $usuario))->find_array();
+		$temp = ORM::for_table('tokens')->where(array('usuario' => $usuario))->find_array();
 		$rpta = null;
 		
 		if(intval($temp) == 1){
