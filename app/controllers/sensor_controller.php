@@ -19,14 +19,10 @@ class SensorController extends Controller
                );
                */
 		// postgres
-               echo "SELECT to_char(fec_med, 'YY') AS anio,to_char(fec_med, 'MM') AS mes, to_char(fec_med, 'DD') AS dia, AVG(valor_med) AS medicion 
-                FROM inve_instru_dato 
-                WHERE fec_med > '" . $fecha_inicio + "' AND fec_med < '" . $fecha_fin . "' AND ide_sensor = " . $id . " GROUP BY dia, mes, anio ORDER BY anio, mes, dia;";
-               exit();
 		$stmt = ORM::get_db()->prepare(
 				"SELECT to_char(fec_med, 'YY') AS anio,to_char(fec_med, 'MM') AS mes, to_char(fec_med, 'DD') AS dia, AVG(valor_med) AS medicion 
                 FROM inve_instru_dato 
-                WHERE fec_med > '" . $fecha_inicio + "' AND fec_med < '" . $fecha_fin . "' AND ide_sensor = " . $id . " GROUP BY dia, mes, anio ORDER BY anio, mes, dia;"
+                WHERE fec_med > '" . $fecha_inicio . "' AND fec_med < '" . $fecha_fin . "' AND ide_sensor = " . $id . " GROUP BY dia, mes, anio ORDER BY anio, mes, dia;"
                );
 		$stmt->execute();
 		$detalle = $stmt->fetchAll(PDO::FETCH_CLASS);
